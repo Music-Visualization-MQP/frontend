@@ -32,11 +32,6 @@ export class AccountComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.route.queryParams
-      .subscribe((params) => {
-        console.log(params['access_token']); 
-        console.log("params above")
-      });
     await this.getProfile();
 
     const { username, website, avatar_url } = this.profile;

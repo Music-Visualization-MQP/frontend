@@ -85,7 +85,7 @@ export class SupabaseService {
    */
 
   async invokeEdgeFunction(name: string, misc: any) {
-    const {data, error} = await this.supabase.functions.invoke('spotify-login', misc)
+    const {data, error} = await this.supabase.functions.invoke(name, misc)
     return {data, error}
   }
   async getAccessToken(){

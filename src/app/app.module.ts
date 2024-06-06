@@ -13,6 +13,7 @@ import { AvatarComponent } from './avatar/avatar.component';
 
 import { AppRoutingModule } from './app-routing.module'
 import { RouterModule, Routes } from '@angular/router';
+import { ServiceAuthComponent } from './service-auth/service-auth.component';
 /* import { SessionGuard } from './guards/session.guard'; */
 
 
@@ -23,7 +24,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
 ]
 @NgModule({
-  declarations: [AppComponent, AuthComponent, AccountComponent, AvatarComponent, RegisterComponent],
+  declarations: [AppComponent, AuthComponent, AccountComponent, AvatarComponent, RegisterComponent, ServiceAuthComponent],
   imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule, RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [],

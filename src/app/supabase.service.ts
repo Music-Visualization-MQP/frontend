@@ -7,7 +7,7 @@ import {
   SupabaseClient,
   User,
 } from '@supabase/supabase-js'
-import { environment } from 'src/environments/environment'
+import { environment } from 'src/environment/environment'
 
 export interface Profile {
   id?: string
@@ -87,5 +87,9 @@ export class SupabaseService {
   async invokeEdgeFunction(name: string, misc: any) {
     const {data, error} = await this.supabase.functions.invoke('spotify-login', misc)
     return {data, error}
+  }
+  async getAccessToken(){
+    const token = (await this.supabase.auth.getSession()).data.session?.access_token;
+    return token;
   }
 }

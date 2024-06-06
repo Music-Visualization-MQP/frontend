@@ -2,10 +2,9 @@ import { Component, Inject, Injectable, Input, OnInit } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { AuthSession } from "@supabase/supabase-js";
 import { Profile, SupabaseService } from "../supabase.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { NgZone } from "@angular/core";
-import { DOCUMENT } from '@angular/common';
-
+import { DOCUMENT } from "@angular/common";
 
 @Component({
   selector: "app-account",
@@ -17,7 +16,7 @@ export class AccountComponent implements OnInit {
   profile!: Profile;
 
   @Input()
-  session!: AuthSession
+  session!: AuthSession;
 
   updateProfileForm = this.formBuilder.group({
     username: "",
@@ -29,11 +28,15 @@ export class AccountComponent implements OnInit {
     private readonly supabase: SupabaseService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private zone: NgZone,
-    @Inject(DOCUMENT) private document: Document
+    private route: ActivatedRoute
   ) {}
 
   async ngOnInit(): Promise<void> {
+    this.route.queryParams
+      .subscribe((params) => {
+        console.log(params['access_token']); 
+        console.log("params above")
+      });
     await this.getProfile();
 
     const { username, website, avatar_url } = this.profile;
@@ -46,8 +49,8 @@ export class AccountComponent implements OnInit {
 
   async getProfile() {
     if (!this.session) {
-      console.error("Session is not defined")
-      this.handleError()
+      console.error("Session is not defined");
+      this.handleError();
       return;
     }
     try {
@@ -98,7 +101,7 @@ export class AccountComponent implements OnInit {
     }
   }
   get avatarUrl() {
-    return this.updateProfileForm.value.avatar_url as string
+    return this.updateProfileForm.value.avatar_url as string;
   }
 
   async updateAvatar(event: string): Promise<void> {
@@ -107,16 +110,12 @@ export class AccountComponent implements OnInit {
     });
     await this.updateProfile();
   }
-  async authorizeSpotify(){
-    console.log('authorize spotify')
-    window.location.href = (await this.supabase.invokeEdgeFunction("spotify-login", '')).data
-    
-  }
+
   async signOut() {
     await this.supabase.signOut();
-    this.router.navigate(["/"])
+    this.router.navigate(["/"]);
   }
-  private handleError(){
-    this.router.navigate(["/"])
+  private handleError() {
+    this.router.navigate(["/"]);
   }
 }

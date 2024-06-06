@@ -12,10 +12,10 @@
       <label for="website">Website</label>
       <input formControlName="website" id="website" type="url" />
     </div>
-
-    <div>
+    <app-service-auth></app-service-auth>
+    <!-- <div>
         <button class="button block" (click)="authorizeSpotify()">Link Spotify</button>
-    </div>
+    </div> -->
   
     <div>
       <button type="submit" class="button primary block" [disabled]="loading">

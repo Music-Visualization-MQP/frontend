@@ -13,6 +13,7 @@ export class ServiceAuthComponent {
     console.log("init");
     console.log(await this.supabase.getAccessToken());
     this.checkSpotifyStatus()
+
   }
   /**
    * verifies if the user has spotify credentials stored by invoking the check-spotify function
@@ -27,6 +28,7 @@ export class ServiceAuthComponent {
       this.spotifyAuthorized = true;
     }
   }
+  
   /**
    * authorizes the user to use spotify by invoking the spotify-login function
    */

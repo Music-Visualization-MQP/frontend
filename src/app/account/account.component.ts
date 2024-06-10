@@ -11,16 +11,11 @@ import { DOCUMENT } from "@angular/common";
   templateUrl: "./account.component.html",
   styleUrls: ["./account.component.css"],
 })
-export class AccountComponent  {
+export class AccountComponent {
   @Input()
   session!: AuthSession;
-  
 
-
-  componentName: string = '';
-  onKey(componentName: string): void {
-    this.componentName = componentName;
-  }
+  componentName: string = "account";
   constructor(
     private readonly supabase: SupabaseService,
     private formBuilder: FormBuilder,
@@ -28,5 +23,14 @@ export class AccountComponent  {
     private route: ActivatedRoute
   ) {}
 
-  
+  onKey(componentName: string): void {
+    this.componentName = componentName;
+  }
+  switchComponent(): void {
+    if (this.componentName === "account") {
+      this.componentName = "data";
+    } else {
+      this.componentName = "account";
+    }
+  }
 }

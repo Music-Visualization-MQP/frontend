@@ -31,8 +31,17 @@ export class UserDataComponent {
     this.responseData = await this.getData()
     if(this.data){
       this.data = JSON.parse(this.responseData.data)
-      console.log(this.data[0])
+      
+      console.log(this.data)
     }
+  }
+  handleImage(item:any){
+    
+    if(item && item.images && item.images[0]) {
+      console.log(item.images[0]);
+      return item.images[0].thumbnails[250];
+    }
+    else return null;
   }
 
 }

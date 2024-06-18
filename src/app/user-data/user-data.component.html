@@ -1,19 +1,22 @@
 
 <table>
-    <tr>
-      <th>Track Name</th>
-      <th>Artists</th>
-      <th>Album Name</th>
+  <tr>
+    <th>Track Name</th>
+    <th>Artists</th>
+    <th>Album Name</th>
+    <th>Images</th>
+  </tr>
+  <tr *ngFor="let item of data">
+    <td>{{item.track_name}}</td>
+    <td>{{item.track_artists}}</td>
+    <td>{{item.track_album.album_name}}</td>
+    <td *ngIf="handleImage(item.images) !== null">
+      <img src="{{ handleImage(item.images) }}" alt="image" />
+    </td>
 
-    </tr>
-    <tr *ngFor="let item of data">
-      <td>{{item.track_name}}</td>
-      <td>{{item.track_artists}}</td>
-      <td>{{item.track_album.album_name}}</td>
+  </tr>
+</table>
 
-
-    </tr>
-  </table>
 <!-- Path: supabase-frontend/src/app/user-data/user-data.component.ts -->
 
 <!-- CREATE TYPE album AS (

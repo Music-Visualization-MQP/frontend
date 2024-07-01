@@ -7,6 +7,7 @@ jobs:
     steps:
       - run: npm install -g @angular/cli
       - run: ls -a
-      - run: ng build --prod
+      - run: cd /home/runner/work/supabase-frontend/
+      - run: ls -a
       
 

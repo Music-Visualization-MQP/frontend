@@ -1,1 +1,10 @@
+name: Music Vis MQP Frontend
+run-name: ${{ github.actor }} is hosting frontend
+on: [push]
+jobs:
+  Add-New-Frontend-Feature:
+    runs-on: ubuntu-latest
+    steps:
+      - run: npm install
+      
 

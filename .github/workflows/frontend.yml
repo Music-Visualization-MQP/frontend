@@ -5,6 +5,7 @@ jobs:
   Add-New-Frontend-Feature:
     runs-on: ubuntu-latest
     steps:
+      - run: ls -a
       - run: npm install
       
 

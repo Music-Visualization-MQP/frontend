@@ -5,7 +5,8 @@ jobs:
   Add-New-Frontend-Feature:
     runs-on: ubuntu-latest
     steps:
+      - run: npm install -g @angular/cli
       - run: ls -a
-      - run: npm install
+      - run: ng build --prod
       
 

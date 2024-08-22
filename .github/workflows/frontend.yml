@@ -2,7 +2,7 @@ name: Music Vis MQP Frontend
 run-name: ${{ github.actor }} is hosting frontend
 on: [push]
 jobs:
-  Add-New-Frontend-Feature:
+  Clone-Install-Build-Deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -13,6 +13,7 @@ jobs:
       - run: ls -a
       - run: ng build --prod
       - run: ls -a
+      - 
 
       
 

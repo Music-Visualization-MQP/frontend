@@ -36,12 +36,13 @@ export class UserDataComponent {
     }
   }
   handleImage(item:any){
-    
-    if(item && item.images && item.images[0]) {
+    console.log(item);
+    return item
+    /* if(item && item.images && item.images[0]) {
       console.log(item.images[0]);
       return item.images[0].thumbnails[250];
     }
-    else return null;
+    else return null; */
   }
 
 }

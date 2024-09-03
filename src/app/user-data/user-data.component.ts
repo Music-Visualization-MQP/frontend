@@ -21,9 +21,7 @@ export class UserDataComponent {
    
   }
   async getData(){
-    console.log("check spotify status");  
     const token = await this.supabase.getAccessToken()
-    console.log("token for check spotify", token)
     const resp = await this.supabase.invokeEdgeFunction("get-user-data", { headers: { Authorization: `Bearer ${token}` } })
     return resp;
   }

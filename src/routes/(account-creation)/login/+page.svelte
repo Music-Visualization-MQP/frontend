@@ -1,1 +1,5 @@
-<h1>Login</h1>
+<script>
+    import AccountForm from '../AccountForm.svelte';
+</script>
+
+<AccountForm type={"login"} />

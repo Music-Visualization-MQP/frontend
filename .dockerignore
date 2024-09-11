@@ -1,5 +1,10 @@
-.angular/
-.github/
-.vscode/
-node_modules/
-.log
+.git
+node_modules
+.git*
+.vscode
+README.md
+Dockerfile*
+docker-compose.yml
+public
+.svelte-kit
+build

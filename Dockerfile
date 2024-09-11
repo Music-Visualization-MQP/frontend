@@ -1,34 +1,25 @@
-# Thank you to: https://dev.to/massivebrains/use-same-dockerfile-for-dev-production-1l7f
+# https://github.com/diericx/climbing_notebook/tree/master
 
-FROM node:hydrogen-alpine AS base
+FROM node:18 AS build
 
 WORKDIR /app
-#COPY nginx.conf /etc/nginx/nginx.conf
-COPY package*.json ./
-RUN npm install
-COPY . . 
 
+COPY package*.json .
 
+RUN npm ci
 
-
-
-FROM base AS dev
-EXPOSE 4200
-#RUN npm install -g typescript
-#RUN npm intall -g @angular/cli
-CMD ["npm", "run", "start"]
-
-# RUN ng build
-FROM base AS build
+COPY . .
 RUN npm run build
-# 
-FROM nginx:stable-alpine3.20 AS prod
+RUN npm prune --production
 
-# COPY nginx.conf /etc/nginx/nginx.conf
+FROM node:18 AS run
 
-COPY --from=build /app/dist/supabase-frontend /usr/share/nginx/html
+ENV NODE_ENV=production
 
-EXPOSE 80
-
-CMD [ "nginx", "-g" ]
-#CMD [ "nginx", "-g", "daemon off;" ]
+WORKDIR /app
+COPY --from=build /app/build ./build
+COPY --from=build /app/package.json ./package.json
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/prisma ./prisma
+RUN ulimit -c unlimited
+ENTRYPOINT ["node", "build"]

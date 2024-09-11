@@ -1,0 +1,28 @@
+@font-face {
+    font-family: "Mattone";
+    src: url("../fonts/Mattone-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Archivo";
+    src: url("../fonts/Archivo-Regular.woff2") format("woff2");
+}
+
+body {
+    background-color: var(--background);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Mattone";
+    color: var(--text);
+}
+
+p, div {
+    font-family: "Archivo";
+    color: var(--text);
+}
+
+a {
+    font-family: "Archivo";
+    color: var(--accent);
+}

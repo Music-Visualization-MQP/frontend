@@ -1,8 +1,4 @@
 <script>
-    import '$lib/assets/stylesheets/reset.css';
-    import '$lib/assets/stylesheets/theme-dark.css';
-    import '$lib/assets/stylesheets/global.css';
-
     import sample_collage from '$lib/assets/images/sample_collage.png'
 </script>
 

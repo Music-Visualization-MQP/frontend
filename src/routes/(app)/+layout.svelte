@@ -22,5 +22,27 @@
             <li><a href="/logout">logout</a></li>
         </ul>
     </nav>
-    <slot></slot>
+    <div class="content">
+        <slot></slot>
+    </div>
 </div>
+
+<style>
+    nav {
+        margin: 20px;
+    }
+
+    ul {
+        display: flex;
+        gap: 20px;
+    }
+
+    a {
+        text-decoration: none;
+        font-family: "Mattone", sans-serif;
+    }
+
+    .content {
+        margin: 20px;
+    }
+</style>

@@ -18,6 +18,5 @@
         flex-direction: column;
         gap: 10px;
         align-items: flex-start;
-        margin: 40px;
     }
 </style>

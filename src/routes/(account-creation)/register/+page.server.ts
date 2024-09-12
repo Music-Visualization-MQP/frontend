@@ -7,12 +7,18 @@ export const actions: Actions = {
     const email = formData.get('email') as string
     const password = formData.get('password') as string
 
-    const { error } = await supabase.auth.signUp({ email, password })
-    if (error) {
-      console.error(error)
-      redirect(303, '/')
-    } else {
+    const { error: register_error } = await supabase.auth.signUp({ email, password })
+    if (register_error) {
+      console.error(register_error)
+      redirect(303, '/register')
+    }
+    
+    const { error: login_error } = await supabase.auth.signInWithPassword({ email, password })
+    if (login_error) {
+      console.error(login_error)
       redirect(303, '/login')
     }
+
+    redirect(303, '/link-spotify')
   }
 }

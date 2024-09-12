@@ -16,7 +16,7 @@ FROM base AS dev
 EXPOSE 4200
 #RUN npm install -g typescript
 #RUN npm intall -g @angular/cli
-CMD ["npm", "run", "start","--", "--host", "0.0.0.0"]
+CMD ["npm", "run", "start", "--", "--host", "0.0.0.0"]
 
 # RUN ng build
 FROM base AS build

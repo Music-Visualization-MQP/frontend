@@ -17,20 +17,24 @@ export const load: PageServerLoad = async ({locals: { supabase, session } }) => 
 
 export const actions: Actions = {
     update_profile: async ({ request, locals: { supabase, session } }) => {
-        const formData = await request.formData()
+        if (session !== null) {
+            const formData = await request.formData()
 
-        const update = {
-            id: session?.user.id,
-            updated_at: new Date(),
-            username: formData.get('username') as string,
-            full_name: formData.get('full_name') as string,
-            website: formData.get('website') as string,
-            avatar_url: formData.get('avatar_url') as string,
-        }
-  
-        const { error } = await supabase.from('profiles').upsert(update)
-        if (error) {
-            console.error(error)
+            const update = {
+                id: session?.user.id,
+                updated_at: new Date(),
+                username: formData.get('username') as string,
+                full_name: formData.get('full_name') as string,
+                website: formData.get('website') as string,
+                avatar_url: formData.get('avatar_url') as string,
+            }
+      
+            const { error } = await supabase.from('profiles').upsert(update)
+            if (error) {
+                console.error(error)
+            }
+        } else {
+            throw Error("User does not have session.") 
         }
     }
   }

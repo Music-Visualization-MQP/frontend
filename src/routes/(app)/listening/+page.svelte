@@ -1,16 +1,25 @@
 <script lang="ts">
+    import type { PageData } from './$types';
+    export let data: PageData;
     import Song from './Song.svelte';
-    let songs: {
-        path: string
-        title: string
-        artist: string
-        album: string
-    }[] = []
 </script>
 
 <h1>Listening Data</h1>
 <div class="songs">
-    {#each songs as song}
+    {#each data.songs as song}
         <Song {song} />
     {/each}
 </div>
+
+<style>
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    .songs {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+</style>

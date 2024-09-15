@@ -9,9 +9,6 @@ RUN npm install
 COPY . . 
 
 
-
-
-
 FROM base AS dev
 EXPOSE 4200
 #RUN npm install -g typescript

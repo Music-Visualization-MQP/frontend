@@ -82,4 +82,23 @@ const authGuard: Handle = async ({ event, resolve }) => {
   return resolve(event)
 }
 
+const originalConsoleWarn = console.warn;
+
+console.warn = function (...args) {
+  const shouldLog = args.every((arg) => {
+    if (typeof arg === 'string') {
+      /*
+      current supabase auth implementation sucks and spits out an unnecessary warning every
+      time session data is needed on a page, even though nothing we're doing is unsafe.
+      we need to manually suppress that warning, unfortunately.
+      */
+      return !arg.includes('Using the user object');
+    }
+    return true;
+  });
+  if(shouldLog) {
+    originalConsoleWarn.apply(console, args);
+  }
+};
+
 export const handle: Handle = sequence(supabase, authGuard)

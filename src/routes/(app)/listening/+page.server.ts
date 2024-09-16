@@ -29,7 +29,6 @@ export const load: PageServerLoad = async ({locals: { supabase, session } }) => 
                 album: song.track_album.album_name
             })
         }
-        console.log(song_data)
         return { songs: songs ?? null }
     } else {
         throw Error("User does not have session.") 

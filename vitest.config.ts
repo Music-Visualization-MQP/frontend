@@ -6,7 +6,12 @@ export default defineConfig({
     svelte({ hot: !process.env.VITEST }),
   ],
   test: {
+    include: ['src/**/*.{test,spec}.ts'],
     environment: 'jsdom',
-    globals: true
+    globals: true,
+    setupFiles: ["./setupTests.js"],
+    alias: {
+      // "$app/forms": resolve('./.empty.js'),
+    }
   }
 })

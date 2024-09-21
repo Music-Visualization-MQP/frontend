@@ -13,7 +13,7 @@
             {/if}
         </fieldset>
         <fieldset>
-            <input type="submit" value={type === "login" ? "sign in" : "get started"}>
+            <input type="submit" value={type === "login" ? "log in" : "get started"}>
             {#if type === "login"}
                 <a href="register">don't have an account?</a>
             {:else}

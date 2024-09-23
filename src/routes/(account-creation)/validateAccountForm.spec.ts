@@ -188,7 +188,7 @@ describe('Test for well-formed password', async () => {
         expect(form.failures.invalidPassword.tooLong).toBe(true)
     });
 
-    test('Password must be under sixty-four characters', async () => {
+    test('Password must contain a number', async () => {
         const formData = new FormData();
         formData.append("email", "test@test.com")
         formData.append("password", "testnonumber");
